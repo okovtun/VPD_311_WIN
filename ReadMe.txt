@@ -1,7 +1,18 @@
 https://github.com/okovtun/VPD_311_WIN.git
 https://www.youtube.com/playlist?list=PLeqyOOqxeiIMzgKUFeiPLsuU-t46Kvv4e
 
+Refs:
+https://learn.microsoft.com/en-us/windows/win32/controls/individual-control-info
+https://learn.microsoft.com/ru-ru/windows/win32/learnwin32/introduction-to-windows-programming-in-c--
+
 TODO:
+1. Выяснить в чем разница между hIcon и hIconSm, для этого в них нужно загрузить разные иконки;
+2. Загрузить анимированный курсор;
+3. Окно должно запускаться ровно посередине экрана, и занимать ровно 75%, независимо от размера экрана;
+4. При перетаскивании окна, и изменении его размеров в строке заголовка должны отображаться размер окна,
+   и его положение на экране;
+
+DONE:
 1. Запретить возможность добавления одинаковых значений;						DONE
 2. При открытии окна 'Добавить вхожение' фокус должен быть на текстовом поле;	DONE
 3. Реализовать кнопку 'Удалить';		DONE
