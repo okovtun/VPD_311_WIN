@@ -6,8 +6,11 @@ https://learn.microsoft.com/en-us/windows/win32/controls/individual-control-info
 https://learn.microsoft.com/ru-ru/windows/win32/learnwin32/introduction-to-windows-programming-in-c--
 
 TODO:
+1. Выучить побитовые операции: NOT, OR, AND, XOR;
+
+TODO:
 1. Поставить значек в окно Калькулятора;
-2. Создать кнопки на Калькуляторе;
+2. Создать кнопки на Калькуляторе;			DONE
 
 DONE:
 1. Выяснить в чем разница между hIcon и hIconSm, для этого в них нужно загрузить разные иконки;	DONE
