@@ -7,9 +7,11 @@ https://learn.microsoft.com/ru-ru/windows/win32/learnwin32/introduction-to-windo
 
 TODO:
 1. Выучить побитовые операции: NOT, OR, AND, XOR;
+2. Реализовать кнопки '<-' и 'C';
+3. Организовать вычисления;
 
-TODO:
-1. Поставить значек в окно Калькулятора;
+DONE:
+1. Поставить значек в окно Калькулятора;	DONE
 2. Создать кнопки на Калькуляторе;			DONE
 
 DONE:
