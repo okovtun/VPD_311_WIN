@@ -6,6 +6,9 @@ https://learn.microsoft.com/en-us/windows/win32/controls/individual-control-info
 https://learn.microsoft.com/ru-ru/windows/win32/learnwin32/introduction-to-windows-programming-in-c--
 
 TODO:
+1. На каждой кнопке отобразить свою иконку;
+
+DONE:
 1. Выучить побитовые операции: NOT, OR, AND, XOR;
 2. Реализовать кнопки '<-' и 'C';
 3. Организовать вычисления;
