@@ -90,6 +90,20 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			GetModuleHandle(NULL),
 			NULL
 		);
+		AddFontResource("Fonts\\MOSCOW2024.otf");
+		HFONT hFont = CreateFont
+		(
+			g_i_FONT_HEIGHT, g_i_FONT_WIDTH,
+			0, 0,
+			FW_MEDIUM, 0, 0, 0,	//Bold, Italic, Underline, Strikeout
+			ANSI_CHARSET,
+			OUT_CHARACTER_PRECIS,
+			CLIP_CHARACTER_PRECIS,
+			ANTIALIASED_QUALITY,
+			FF_DONTCARE,
+			"MOSCOW2024"
+		);
+		SendMessage(hEdit, WM_SETFONT, (WPARAM)hFont, TRUE);
 
 		CHAR sz_digit[2] = {};
 		for (int i = 6; i >= 0; i -= 3)
@@ -418,8 +432,9 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		//2) Добавляем пункты в созданное меню:
 		InsertMenu(hMenu, 0, MF_BYPOSITION | MF_STRING, IDR_EXIT, "Exit");
 		InsertMenu(hMenu, 0, MF_BYPOSITION | MF_SEPARATOR, 0, NULL);
-		InsertMenu(hMenu, 0, MF_BYPOSITION | MF_STRING, IDR_METAL_MISTRAL, "Metal mistral");
-		InsertMenu(hMenu, 0, MF_BYPOSITION | MF_STRING, IDR_SQUARE_BLUE, "Square blue");
+		InsertMenu(hMenu, 0, MF_BYPOSITION | MF_STRING | MF_UNCHECKED, IDR_METAL_MISTRAL, "Metal mistral");
+		InsertMenu(hMenu, 0, MF_BYPOSITION | MF_STRING | MF_UNCHECKED, IDR_SQUARE_BLUE, "Square blue");
+		CheckMenuItem(hMenu, index, MF_BYPOSITION | MF_CHECKED);
 
 		//3) Использование контекстного меню:
 		DWORD item = TrackPopupMenu(hMenu, TPM_RETURNCMD | TPM_RIGHTALIGN | TPM_BOTTOMALIGN, LOWORD(lParam), HIWORD(lParam), 0, hwnd, NULL);
@@ -428,6 +443,8 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		case IDR_SQUARE_BLUE:	//SetSkin(hwnd, "square_blue");		break;
 		case IDR_METAL_MISTRAL:	//SetSkin(hwnd, "metal_mistral");		break;
 			index = item - IDR_SQUARE_BLUE;
+			//SendMessage(GetDlgItem(hwnd, item), MENUITEM)
+			//ModifyMenu(hMenu, item - IDR_SQUARE_BLUE, MF_BYPOSITION | MF_STRING | MF_CHECKED, item, NULL);
 			break;
 		case IDR_EXIT:			SendMessage(hwnd, WM_CLOSE, 0, 0);	break;
 		}
