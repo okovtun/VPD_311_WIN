@@ -353,42 +353,65 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		case VK_OEM_PLUS:
 		case VK_ADD:
 			SendMessage(GetDlgItem(hwnd, IDC_BUTTON_PLUS), BM_SETSTATE, FALSE, 0);
-			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_PLUS), 0);	
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_PLUS), 0);
 			break;
 		case VK_OEM_MINUS:
-		case VK_SUBTRACT:	
+		case VK_SUBTRACT:
 			SendMessage(GetDlgItem(hwnd, IDC_BUTTON_MINUS), BM_SETSTATE, FALSE, 0);
-			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_MINUS), 0); 
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_MINUS), 0);
 			break;
-		case VK_MULTIPLY:	
+		case VK_MULTIPLY:
 			SendMessage(GetDlgItem(hwnd, IDC_BUTTON_ASTER), BM_SETSTATE, FALSE, 0);
-			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_ASTER), 0); 
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_ASTER), 0);
 			break;
-		case VK_OEM_2:	
-		case VK_DIVIDE:	
+		case VK_OEM_2:
+		case VK_DIVIDE:
 			SendMessage(GetDlgItem(hwnd, IDC_BUTTON_SLASH), BM_SETSTATE, FALSE, 0);
-			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_SLASH), 0); 
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_SLASH), 0);
 			break;
 
 		case VK_OEM_PERIOD:
-		case VK_DECIMAL:	
+		case VK_DECIMAL:
 			SendMessage(GetDlgItem(hwnd, IDC_BUTTON_POINT), BM_SETSTATE, FALSE, 0);
-			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_POINT), 0); 
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_POINT), 0);
 			break;
-		case VK_BACK:		
+		case VK_BACK:
 			SendMessage(GetDlgItem(hwnd, IDC_BUTTON_BSP), BM_SETSTATE, FALSE, 0);
-			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_BSP), 0);	
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_BSP), 0);
 			break;
-		case VK_ESCAPE:		
+		case VK_ESCAPE:
 			SendMessage(GetDlgItem(hwnd, IDC_BUTTON_CLR), BM_SETSTATE, FALSE, 0);
-			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_CLR), 0);	
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_CLR), 0);
 			break;
-		case VK_RETURN:		
+		case VK_RETURN:
 			SendMessage(GetDlgItem(hwnd, IDC_BUTTON_EQUAL), BM_SETSTATE, FALSE, 0);
-			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_EQUAL), 0);	
+			SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_EQUAL), 0);
 			break;
 
 		}
+	}
+	break;
+	case WM_CONTEXTMENU:
+	{
+		//1) Создаем всплывающее меню:
+		HMENU hMenu = CreatePopupMenu();
+		
+		//2) Добавляем пункты в созданное меню:
+		InsertMenu(hMenu, 0, MF_BYPOSITION | MF_STRING, IDR_EXIT, "Exit");
+		InsertMenu(hMenu, 0, MF_BYPOSITION | MF_SEPARATOR, 0, NULL);
+		InsertMenu(hMenu, 0, MF_BYPOSITION | MF_STRING, IDR_METAL_MISTRAL, "Metal mistral");
+		InsertMenu(hMenu, 0, MF_BYPOSITION | MF_STRING, IDR_SQUARE_BLUE, "Square blue");
+
+		//3) Использование контекстного меню:
+		switch (TrackPopupMenu(hMenu, TPM_RETURNCMD | TPM_RIGHTALIGN | TPM_BOTTOMALIGN, LOWORD(lParam), HIWORD(lParam), 0, hwnd, NULL))
+		{
+		case IDR_SQUARE_BLUE:	SetSkin(hwnd, "square_blue");		break;
+		case IDR_METAL_MISTRAL:	SetSkin(hwnd, "metal_mistral");		break;
+		case IDR_EXIT:			SendMessage(hwnd, WM_CLOSE, 0, 0);	break;
+		}
+
+		//4) Удаляем меню:
+		DestroyMenu(hMenu);
 	}
 	break;
 	case WM_DESTROY:
