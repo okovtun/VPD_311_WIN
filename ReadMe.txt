@@ -13,7 +13,8 @@ TODO:
 4. При переключении скинов должен меняться цвет окна, экрана	DONE
    и шрифта на экране  калькулятора;
 5. В контекстное меню добавить шрифты;
-6. Каждый отдельный скин вынести в свой DLL-файл:
+	https://stackoverflow.com/questions/58712918/win32-use-a-resource-font-inside-the-application
+6. Каждый отдельный скин вынести в свой DLL-файл:				DONE
 	https://learn.microsoft.com/en-us/cpp/build/creating-a-resource-only-dll?view=msvc-170;
 7. Сделать программу установки калькулятора в систему;
 

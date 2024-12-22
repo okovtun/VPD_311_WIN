@@ -76,6 +76,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	static INT index = 0;
+	static HMODULE hFontsModule = NULL;
 	switch (uMsg)
 	{
 	case WM_CREATE:
@@ -91,7 +92,15 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			GetModuleHandle(NULL),
 			NULL
 		);
-		AddFontResource("Fonts\\MOSCOW2024.otf");
+
+		hFontsModule = LoadLibrary("Fonts.dll");
+		HRSRC hFntRes = FindResource(hFontsModule, MAKEINTRESOURCE(2003), MAKEINTRESOURCE(RT_FONT));
+		HGLOBAL hFntMem = LoadResource(hFontsModule, hFntRes);
+		VOID* fntData = LockResource(hFntMem);
+		DWORD nFonts = 0;
+		DWORD len = SizeofResource(hFontsModule, hFntRes);
+		AddFontMemResourceEx(fntData, len, NULL, &nFonts);
+		//AddFontResource("Fonts\\MOSCOW2024.otf");
 		HFONT hFont = CreateFont
 		(
 			g_i_FONT_HEIGHT, g_i_FONT_WIDTH,
@@ -102,7 +111,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			CLIP_CHARACTER_PRECIS,
 			ANTIALIASED_QUALITY,
 			FF_DONTCARE,
-			"MOSCOW2024"
+			"Terminator Two"
 		);
 		SendMessage(hEdit, WM_SETFONT, (WPARAM)hFont, TRUE);
 
@@ -462,6 +471,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	}
 	break;
 	case WM_DESTROY:
+		FreeLibrary(hFontsModule);
 		PostQuitMessage(0);
 		break;
 	case WM_CLOSE:
