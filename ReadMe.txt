@@ -6,6 +6,12 @@ https://learn.microsoft.com/en-us/windows/win32/controls/individual-control-info
 https://learn.microsoft.com/ru-ru/windows/win32/learnwin32/introduction-to-windows-programming-in-c--
 
 TODO:
+1. Реализовать элементы контекстного меню;
+	Topmost - часы будут отображаться поверх всех окон;
+	Show controls - показать элементы управления;
+2. Прикрутить кастомный шрифт;
+
+DONE:
 1. На каждой кнопке отобразить свою иконку;						DONE
 2. На экране калькулятора использовать кастомный шрифт;			DONE
 3. При нажатии ПКМ на калькуляторе отобраить контекстное меню,
