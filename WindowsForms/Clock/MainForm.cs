@@ -16,5 +16,23 @@ namespace Clock
 		{
 			InitializeComponent();
 		}
+
+		private void timer_Tick(object sender, EventArgs e)
+		{
+			//Обработчик события - это самая обычная функция, которая неявно вызывается 
+			//					   при возникновении определенного события.
+			//У элемента интерфкйса может быть множество событий, и одно из них будет событием по умолчанию.
+			labelTime.Text = DateTime.Now.ToString("hh:mm:ss tt", System.Globalization.CultureInfo.InvariantCulture);
+			//labelTime.Text = DateTime.Now.ToString("HH:mm:ss");
+			if (checkBoxShowDate.Checked)
+				labelTime.Text += $"\n{DateTime.Now.ToString("yyyy.MM.dd")}";
+			if (checkBoxShowWeekday.Checked)
+				labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
+		}
+
+		private void buttonHideControls_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
