@@ -17,6 +17,10 @@ TODO:
 6. Каждый отдельный скин вынести в свой DLL-файл:				DONE
 	https://learn.microsoft.com/en-us/cpp/build/creating-a-resource-only-dll?view=msvc-170;
 7. Сделать программу установки калькулятора в систему;
+	!!!https://learn.microsoft.com/en-us/cpp/windows/walkthrough-deploying-a-visual-cpp-application-by-using-a-setup-project?view=msvc-170
+	???https://learn.microsoft.com/en-us/windows/msix/app-installer/create-appinstallerfile-vs
+8. При выходе из калькулятора активная тема и шрифт должны сохраняться,
+   и восстанавливаться при следующем запуске
 
 DONE:
 1. Выучить побитовые операции: NOT, OR, AND, XOR;
