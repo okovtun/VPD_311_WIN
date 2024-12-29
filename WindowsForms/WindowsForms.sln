@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.34930.48
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clock", "Clock\Clock.csproj", "{0FCCAA94-33A5-4AD7-9783-BEFD94C8822F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FCCAA94-33A5-4AD7-9783-BEFD94C8822F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0FCCAA94-33A5-4AD7-9783-BEFD94C8822F}.Debug|x64.Build.0 = Debug|Any CPU
+		{0FCCAA94-33A5-4AD7-9783-BEFD94C8822F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0FCCAA94-33A5-4AD7-9783-BEFD94C8822F}.Debug|x86.Build.0 = Debug|Any CPU
+		{0FCCAA94-33A5-4AD7-9783-BEFD94C8822F}.Release|x64.ActiveCfg = Release|Any CPU
+		{0FCCAA94-33A5-4AD7-9783-BEFD94C8822F}.Release|x64.Build.0 = Release|Any CPU
+		{0FCCAA94-33A5-4AD7-9783-BEFD94C8822F}.Release|x86.ActiveCfg = Release|Any CPU
+		{0FCCAA94-33A5-4AD7-9783-BEFD94C8822F}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {259135F7-2EC0-42B1-BC5D-EA0B3269222C}
+	EndGlobalSection
+EndGlobal
