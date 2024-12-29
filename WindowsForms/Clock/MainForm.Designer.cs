@@ -46,6 +46,7 @@
 			this.labelTime.Size = new System.Drawing.Size(118, 51);
 			this.labelTime.TabIndex = 0;
 			this.labelTime.Text = "Time";
+			this.labelTime.DoubleClick += new System.EventHandler(this.labelTime_DoubleClick);
 			// 
 			// timer
 			// 
@@ -89,13 +90,14 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(541, 460);
+			this.ClientSize = new System.Drawing.Size(287, 345);
 			this.Controls.Add(this.buttonHideControls);
 			this.Controls.Add(this.checkBoxShowWeekday);
 			this.Controls.Add(this.checkBoxShowDate);
 			this.Controls.Add(this.labelTime);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Clock VPD_311";
 			this.ResumeLayout(false);
 			this.PerformLayout();

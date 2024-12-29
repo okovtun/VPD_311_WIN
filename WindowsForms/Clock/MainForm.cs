@@ -15,6 +15,17 @@ namespace Clock
 		public MainForm()
 		{
 			InitializeComponent();
+			labelTime.BackColor = Color.AliceBlue;
+			this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Width, 50);
+		}
+		void SetVisibility(bool visible)
+		{
+			checkBoxShowDate.Visible = visible;
+			checkBoxShowWeekday.Visible = visible;
+			buttonHideControls.Visible = visible;
+			this.FormBorderStyle = visible ? FormBorderStyle.FixedDialog : FormBorderStyle.None;
+			this.ShowInTaskbar = visible;
+			this.TransparencyKey = visible ? Color.Empty : this.BackColor;
 		}
 
 		private void timer_Tick(object sender, EventArgs e)
@@ -32,7 +43,12 @@ namespace Clock
 
 		private void buttonHideControls_Click(object sender, EventArgs e)
 		{
+			SetVisibility(false);
+		}
 
+		private void labelTime_DoubleClick(object sender, EventArgs e)
+		{
+			SetVisibility(true);
 		}
 	}
 }
