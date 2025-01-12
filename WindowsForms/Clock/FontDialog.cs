@@ -16,6 +16,8 @@ namespace Clock
 	{
 		string execution_path = "";
 		string fonts_path = "";
+		public string FontsPath { get => fonts_path; }
+		public string FontFilename { get; set; }
 		public Font Font { get; set; }
 		public FontDialog()
 		{
@@ -24,9 +26,16 @@ namespace Clock
 			fonts_path =  $"{execution_path}\\..\\..\\Fonts";
 			LoadFonts();
 		}
+		public FontDialog(string fontname, float fontsize):this()
+		{
+			numericUpDownFontSize.Value = (decimal)fontsize;
+			comboBoxFonts.SelectedIndex = comboBoxFonts.Items.IndexOf(fontname);
+			Font = labelExample.Font;
+			FontFilename = fontname;
+		}
 		void LoadFonts()
 		{
-			Console.WriteLine(execution_path);
+			//Console.WriteLine(execution_path);
 			//Directory.SetCurrentDirectory(fonts_path);
 			//Console.WriteLine(Directory.GetCurrentDirectory());
 
@@ -58,6 +67,7 @@ namespace Clock
 		private void buttonOK_Click(object sender, EventArgs e)
 		{
 			Font = labelExample.Font;
+			FontFilename = comboBoxFonts.SelectedItem.ToString();
 		}
 
 		private void buttonApply_Click(object sender, EventArgs e)

@@ -66,6 +66,7 @@
 			this.labelTime.Size = new System.Drawing.Size(118, 51);
 			this.labelTime.TabIndex = 0;
 			this.labelTime.Text = "Time";
+			this.labelTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.labelTime.DoubleClick += new System.EventHandler(this.labelTime_DoubleClick);
 			// 
 			// contextMenuStrip
@@ -85,7 +86,7 @@
             this.toolStripSeparator4,
             this.toolStripMenuItemExit});
 			this.contextMenuStrip.Name = "contextMenuStrip";
-			this.contextMenuStrip.Size = new System.Drawing.Size(210, 248);
+			this.contextMenuStrip.Size = new System.Drawing.Size(210, 226);
 			// 
 			// toolStripMenuItemTopmost
 			// 
@@ -252,6 +253,7 @@
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Clock VPD_311";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.contextMenuStrip.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
