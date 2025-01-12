@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;	//DllImport
+using System.IO;						//Directory
 
 namespace Clock
 {
 	public partial class MainForm : Form
 	{
+		FontDialog fontDialog;
 		public MainForm()
 		{
 			InitializeComponent();
@@ -19,6 +22,10 @@ namespace Clock
 			this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Width, 50);
 			//toolStripMenuItemShowControls.Checked = false;	//Works not correctly
 			toolStripMenuItemShowControls.Checked = true;
+			toolStripMenuItemShowConsole.Checked = true;
+
+			fontDialog = new FontDialog();
+			Console.WriteLine(Directory.GetCurrentDirectory());
 		}
 		void SetVisibility(bool visible)
 		{
@@ -91,6 +98,33 @@ namespace Clock
 			colorDialog.Color = labelTime.ForeColor;
 			if (colorDialog.ShowDialog(this) == DialogResult.OK) labelTime.ForeColor = colorDialog.Color;
 		}
+
+		private void toolStripMenuItemChooseFont_Click(object sender, EventArgs e)
+		{
+			if (fontDialog.ShowDialog(this) == DialogResult.OK)
+			{
+				labelTime.Font = fontDialog.Font;
+			}
+		}
+
+		private void notifyIcon_DoubleClick(object sender, EventArgs e)
+		{
+			if (!this.TopMost)
+			{
+				this.TopMost = true;
+				this.TopMost = false;
+			}
+		}
+
+		private void toolStripMenuItemShowConsole_CheckedChanged(object sender, EventArgs e)
+		{
+			//AllocConsole();
+			bool show = toolStripMenuItemShowConsole.Checked ? AllocConsole() : FreeConsole();
+		}
+		[DllImport("kernel32.dll")]
+		static extern bool AllocConsole();
+		[DllImport("kernel32.dll")]
+		static extern bool FreeConsole();
 
 		//private void toolStripMenuItemShowControls_CheckedChanged(object sender, EventArgs e)
 		//{
