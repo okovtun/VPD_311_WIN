@@ -32,6 +32,7 @@ namespace Clock
 			LoadSettings();
 			alarmsForm = new AlarmsForm(this);
 			if (fontDialog == null) fontDialog = new FontDialog();
+			axWindowsMediaPlayer.Visible = false;
 		}
 		void SetVisibility(bool visible)
 		{
@@ -103,8 +104,24 @@ namespace Clock
 				$"{DateTime.Now.ToString("yyyy.MM.dd")}\n" +
 				$"{DateTime.Now.DayOfWeek}";
 
-				nextAlarm = FindNextAlarm();
-				if(nextAlarm != null)Console.WriteLine(nextAlarm);
+			nextAlarm = FindNextAlarm();
+			if (nextAlarm != null) Console.WriteLine(nextAlarm);
+
+			if (
+				nextAlarm != null &&
+				nextAlarm.Time.Hours == DateTime.Now.Hour &&
+				nextAlarm.Time.Minutes == DateTime.Now.Minute &&
+				nextAlarm.Time.Seconds == DateTime.Now.Second
+				)
+			{
+				System.Threading.Thread.Sleep(1000);
+				axWindowsMediaPlayer.Visible = true;
+				axWindowsMediaPlayer.URL = nextAlarm.Filename;
+				axWindowsMediaPlayer.settings.volume = 100;
+				axWindowsMediaPlayer.Ctlcontrols.play();
+				if(nextAlarm.Message != "")
+					MessageBox.Show(this, nextAlarm.Message, "Alarm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
 		}
 
 		private void buttonHideControls_Click(object sender, EventArgs e)
@@ -187,10 +204,10 @@ namespace Clock
 		private void toolStripMenuItemLoadOnWindowsStartup_CheckedChanged(object sender, EventArgs e)
 		{
 			string key_name = "Clock_VPD_311";
-			RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);	//true - Writable
+			RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);   //true - Writable
 			if (toolStripMenuItemLoadOnWindowsStartup.Checked) key.SetValue(key_name, Application.ExecutablePath);
-			else key.DeleteValue(key_name, false);	//false - throwOnMissingValue (Бросить исключение если удаляемое значение отсутствует)
-			//Through
+			else key.DeleteValue(key_name, false);  //false - throwOnMissingValue (Бросить исключение если удаляемое значение отсутствует)
+													//Through
 			key.Dispose();
 		}
 
