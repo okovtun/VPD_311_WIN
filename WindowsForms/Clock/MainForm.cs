@@ -17,6 +17,7 @@ namespace Clock
 	{
 		FontDialog fontDialog;
 		AlarmsForm alarmsForm;
+		Alarm nextAlarm;
 		public MainForm()
 		{
 			InitializeComponent();
@@ -81,7 +82,11 @@ namespace Clock
 			sw.WriteLine($"{labelTime.ForeColor.ToArgb()}");
 			sw.Close();
 		}
-
+		Alarm FindNextAlarm()
+		{
+			nextAlarm = alarmsForm.Alarms.Items.Cast<Alarm>().ToArray().Min();
+			return nextAlarm;
+		}
 		private void timer_Tick(object sender, EventArgs e)
 		{
 			//Обработчик события - это самая обычная функция, которая неявно вызывается 
@@ -97,6 +102,9 @@ namespace Clock
 				$"{DateTime.Now.ToString("hh:mm tt")}\n" +
 				$"{DateTime.Now.ToString("yyyy.MM.dd")}\n" +
 				$"{DateTime.Now.DayOfWeek}";
+
+				nextAlarm = FindNextAlarm();
+				if(nextAlarm != null)Console.WriteLine(nextAlarm);
 		}
 
 		private void buttonHideControls_Click(object sender, EventArgs e)
