@@ -12,25 +12,67 @@ namespace Clock
 {
 	public partial class AddAlarmDialog : Form
 	{
+		public Alarm Alarm;
+		OpenFileDialog openFile;
 		public AddAlarmDialog()
 		{
 			InitializeComponent();
 			dateTimePickerDate.Enabled = false;
 			this.StartPosition = FormStartPosition.Manual;
+			Alarm = new Alarm();
+			SetWeekDays();
+			openFile = new OpenFileDialog();
+			labelFilename.Height = 32;
+		}
+		void SetWeekDays()
+		{
+			bool[] days = Alarm.Week.ToArray();
+			for (int i = 0; i < checkedListBoxWeekdays.Items.Count; i++)
+				checkedListBoxWeekdays.SetItemChecked(i, days[i]);
 		}
 
 		private void checkBoxUseDate_CheckedChanged(object sender, EventArgs e)
 		{
 			dateTimePickerDate.Enabled = checkBoxUseDate.Checked;
+			checkedListBoxWeekdays.Enabled = !checkBoxUseDate.Checked;
 		}
 
 		private void buttonOK_Click(object sender, EventArgs e)
 		{
-			for (int i = 0; i < checkedListBoxWeekdays.Items.Count; i++)
+			this.DialogResult = DialogResult.OK;
+			Alarm.Date = dateTimePickerDate.Enabled ? dateTimePickerDate.Value : DateTime.MinValue;
+			Alarm.Time = dateTimePickerTime.Value.TimeOfDay;
+			//for (int i = 0; i < checkedListBoxWeekdays.Items.Count; i++)
+			//{
+			//	Console.Write(checkedListBoxWeekdays.GetItemChecked(i) + "\t");
+			//}
+			//Console.WriteLine();
+			Alarm.Week = new Week
+				(
+					checkedListBoxWeekdays.
+					Items.
+					Cast<object>().
+					Select((item, index) => checkedListBoxWeekdays.GetItemChecked(index)).ToArray()
+				);
+			if (labelFilename.Text != "Filename:" && labelFilename.Text != "")
 			{
-				Console.Write(checkedListBoxWeekdays.GetItemChecked(i) + "\t");
+				Alarm.Filename = openFile.FileName;
 			}
-			Console.WriteLine();
+			else
+			{
+				MessageBox.Show(this, "Выберите звуковой файл", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				this.DialogResult = DialogResult.None;
+			}
+
+			Alarm.Message = richTextBoxMessage.Text;
+		}
+
+		private void buttonChooseFile_Click(object sender, EventArgs e)
+		{
+			if (openFile.ShowDialog() == DialogResult.OK)
+			{
+				labelFilename.Text = $"Filename:\n{openFile.FileName}";
+			}
 		}
 	}
 }

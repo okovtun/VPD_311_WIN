@@ -36,6 +36,8 @@
 			this.labelFilename = new System.Windows.Forms.Label();
 			this.buttonOK = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
+			this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();
+			this.buttonChooseFile = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// checkBoxUseDate
@@ -64,7 +66,7 @@
 			// 
 			this.dateTimePickerTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.dateTimePickerTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-			this.dateTimePickerTime.Location = new System.Drawing.Point(196, 49);
+			this.dateTimePickerTime.Location = new System.Drawing.Point(191, 49);
 			this.dateTimePickerTime.Name = "dateTimePickerTime";
 			this.dateTimePickerTime.Size = new System.Drawing.Size(162, 31);
 			this.dateTimePickerTime.TabIndex = 2;
@@ -82,7 +84,7 @@
             "Пт",
             "Сб",
             "Вс"});
-			this.checkedListBoxWeekdays.Location = new System.Drawing.Point(18, 113);
+			this.checkedListBoxWeekdays.Location = new System.Drawing.Point(13, 113);
 			this.checkedListBoxWeekdays.MultiColumn = true;
 			this.checkedListBoxWeekdays.Name = "checkedListBoxWeekdays";
 			this.checkedListBoxWeekdays.Size = new System.Drawing.Size(340, 19);
@@ -91,7 +93,8 @@
 			// labelFilename
 			// 
 			this.labelFilename.AutoSize = true;
-			this.labelFilename.Location = new System.Drawing.Point(18, 150);
+			this.labelFilename.Location = new System.Drawing.Point(10, 213);
+			this.labelFilename.MaximumSize = new System.Drawing.Size(350, 0);
 			this.labelFilename.Name = "labelFilename";
 			this.labelFilename.Size = new System.Drawing.Size(52, 13);
 			this.labelFilename.TabIndex = 4;
@@ -100,7 +103,7 @@
 			// buttonOK
 			// 
 			this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.buttonOK.Location = new System.Drawing.Point(196, 199);
+			this.buttonOK.Location = new System.Drawing.Point(196, 267);
 			this.buttonOK.Name = "buttonOK";
 			this.buttonOK.Size = new System.Drawing.Size(75, 23);
 			this.buttonOK.TabIndex = 5;
@@ -111,18 +114,38 @@
 			// buttonCancel
 			// 
 			this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonCancel.Location = new System.Drawing.Point(283, 199);
+			this.buttonCancel.Location = new System.Drawing.Point(283, 267);
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.Size = new System.Drawing.Size(75, 23);
 			this.buttonCancel.TabIndex = 6;
 			this.buttonCancel.Text = "Cancel";
 			this.buttonCancel.UseVisualStyleBackColor = true;
 			// 
+			// richTextBoxMessage
+			// 
+			this.richTextBoxMessage.Location = new System.Drawing.Point(13, 158);
+			this.richTextBoxMessage.Name = "richTextBoxMessage";
+			this.richTextBoxMessage.Size = new System.Drawing.Size(340, 52);
+			this.richTextBoxMessage.TabIndex = 7;
+			this.richTextBoxMessage.Text = "";
+			// 
+			// buttonChooseFile
+			// 
+			this.buttonChooseFile.Location = new System.Drawing.Point(13, 267);
+			this.buttonChooseFile.Name = "buttonChooseFile";
+			this.buttonChooseFile.Size = new System.Drawing.Size(75, 23);
+			this.buttonChooseFile.TabIndex = 8;
+			this.buttonChooseFile.Text = "Обзор";
+			this.buttonChooseFile.UseVisualStyleBackColor = true;
+			this.buttonChooseFile.Click += new System.EventHandler(this.buttonChooseFile_Click);
+			// 
 			// AddAlarmDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(374, 242);
+			this.ClientSize = new System.Drawing.Size(370, 302);
+			this.Controls.Add(this.buttonChooseFile);
+			this.Controls.Add(this.richTextBoxMessage);
 			this.Controls.Add(this.buttonCancel);
 			this.Controls.Add(this.buttonOK);
 			this.Controls.Add(this.labelFilename);
@@ -149,5 +172,7 @@
 		private System.Windows.Forms.Label labelFilename;
 		private System.Windows.Forms.Button buttonOK;
 		private System.Windows.Forms.Button buttonCancel;
+		private System.Windows.Forms.RichTextBox richTextBoxMessage;
+		private System.Windows.Forms.Button buttonChooseFile;
 	}
 }
